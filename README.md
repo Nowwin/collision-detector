@@ -1,89 +1,61 @@
-# Final Project - Applied Computational Geometry 
-
-<img src="./media/banner.png">
+# Circle Simulation with SDL2
 
 ## Description
 
-An important part of this course is having the opportunity to build a project that you care about. The final project in this course showcases your creativity from what you have learned over the semester and can be used as a portfolio piece for future internship, co-op, and full-time job opportunities.  We have covered enough geometry that I hope you have found some interest in the range of topics.
+This C++ application is designed to demonstrate the simulation of circles in a 2D space using the SDL2 library. It not only renders these circles but also effectively handles their collision detection. At its core, the program aims to illustrate the performance benefits of optimized collision detection algorithms compared to naive methods.
 
-The intent of this course is to also give you some research experience, which is how I would like you to approach the project.
-  
-## Expectations
+The following video demonstrates this project in action: https://youtu.be/ZnzW5qGurSY?si=LqNF0f-8lHwgQc5Y
 
-You can work on any idea you want that is within the scope of geometry (pathfinding, triangulation, convex hulls, physics, graphics, etc.). You may explore areas that we did not cover heavily in class that generally fall in the 'realm' of geometry.  Your final project should be on the order of the difficulty beyond the homeworks.  
+![Screenshot of the simulation](images/Simlation_2.png)
 
-## Project strategy
+## Features
 
-My suggested strategy for this project is to:
+- Random circle generation : The application generates a random set of circles with varying positions and radii. These circles are displayed in a window generated using SDL2.
+- Circle collision detection : Two methods are employed to detect if any circles collide:
+  - Naive Collision Detection: In this approach, every circle is compared with every other circle to check for collisions. While straightforward, this is computationally expensive.
+  - Grid Partitioning: To speed up the collision detection, the application optionally uses a grid-partitioning algorithm. This algorithm divides the 2D space into smaller cells, or 'grids', and only checks for collisions within these grids.
+- Real-time Updates: The program is designed to handle real-time updates efficiently. Circles can move and respond to collisions, and the display updates in real-time.
+- Optional timing output for performance measurement
 
-* Check in with the instructor or TA about a project idea if you're unsure of the scope or requirements early.
-* You will have plenty of time to think about the project you want to deliver, but get started early.
-* I recommend finding at least one web tutorial, youtube talk, etc. that can serve as a reference for you to fall back on.
-* Find your teammates(teams of up to 2) early if you choose to work in a team!
-  * Piazza is a good resource, and I will tentatively match folks on a spreadsheet if requested.
-  
-## How to run your final project
+## Requirements
 
-Use a [build.py](./build.py). You can modify [build.py](./build.py) to your needs, but I should be able to type `python3 build.py` and then run the generated executable. I plan to spend 0 time figuring out what dependencies to download. If there is some setup extraneous setup needed to run your project, we should arrange to demonstrate your project during office hours. 
+- C++ Compiler
+- SDL2 Library
 
-Pretend you are deploying this software to someone who has no idea what your code does and needs to be able to run it. The only assumption you should make is the user has SDL2 setup and perhaps a web browser. Logistically, using the [build.py](./build.py) that we have used in this course makes it possible for myself and the course staff to run and debug your project.
+## Compilation and Execution
 
-## Video Deliverable
+First, make sure to install the SDL2 development library for your system.
 
-For this project, you need to make a video recording of your project. Here are the specifications:
+To build the project, simply run the `build.py` script:
 
-- Give an 2-3 minute overview of your implementation as a youtube video.
-- Explain what your project is (i.e. You should be talking in your video as you show things)
-- Show what was achieved (e.g. moving a camera around and talking over) 
-- In the video highlight **one** particular technical achievement.
-  - e.g. Part of the code or algorithm that does something neat or was difficult to get right.
-    - Give a quick 'tutorial' like summary of how you solved the problem.
-    - You can talk about other important features in your project, but dedicate some time on one specific item.
-    
-Videos may publicly be uploaded to the course websites 'hall of fame'--please keep the links up!
+```bash
+python build.py
+This will compile the project into an executable.
+```
 
-### Sample Video Deliverable
+Run the program as follows:
 
-Here are some samples from previous years and what I like about it:
+```bash
+./output_program_name number_of_circles [print_timing] [naive]
+```
 
-**Note** These are from my computer graphics course, as we have no prior iteration of this course. However, they showcase some different topics on topology and mesh simplification that are interesting and relevant. Regardless, they are nice examples of the final project video.
+### Command Line Arguments
 
-- Terrain: https://youtu.be/cGB8C6IT8eE
-  - I like this sample because:
-    - I can hear the speakers voice.
-    - The talk is well outlined and concise.
-    - The speaker shows off the technical parts of the code well.
-    - The speaker shows the actual visuals and uses a high resolution video.
-    - It is not a very long video with lots of silence or 'umms'
-    - If I were to see this on a resume, I would have a very good idea of what the developer knows.
-- (Fall 21) Surface Simplification: https://www.youtube.com/watch?v=qfl6fkYbPXU
-	- This project implements an actual SIGGRAPH paper.
-	- Well presented, and shows off the actual 3D object going simplification as speaker speaks.
-	- Breaks down complicated technical idea (from a paper) to something consumable.
+1. `number_of_circles`: Required. Specifies the number of circles to generate.
+2. `print_timing`: Optional. If set to 1, prints the time taken by each iteration.
+3. `naive`: Optional. If present, the program will use naive collision detection.
 
+## Functions and Classes
 
-## Deliverables
+- `drawPoint()`: Draws a point on the SDL renderer.
+- `drawCircle()`: Draws a circle using a given algorithm.
+- `drawFilledCircle()`: Draws a filled circle on the SDL renderer.
+- `main()`: Entry point of the program.
 
-* You need to commit your code to this repository.
-* Your program needs to compile using a build.py script (Unless it is a webgl project).
-* Put a link to a youtube/Vimeo video in this README.md.
-* Put screenshots in the README.md along with the youtube/vimeo video.
+## Authors
 
-## More Resources
+- Abhijeet Chowdhury
 
-* N/A
+## License
 
-## Other FAQ
-
-- Q: May I upload my final project to a public repository after the semester is over?
-	- A: Yes under the following conditions
-		- You acknowledge your team members and any third parties fairly for their contributions.
-  		- You remove the README.md provided with the assignment (delete it entirely from your github history), as you'll want your own readme anyway.
-- Q: May I have a team of 3 or 4--I really want 3 or 4 team members?
-	- A: No. I recommend a team size of 1-2. This project can be completed as a 1 person project. I **strongly** recommend using this project as a portfolio piece and treating it as such if you were to apply for a software or graphics engineering position.
-- Q: Can I use any of the lab code in my project?
-	- A: Yes, anything that I've provided you can use. Please acknowledge it somewhere in the repo, and if you use this project in your portfolio, please keep that acknowledgement in if there was significant use of code I have provided.
-- Q: Can I use late day tokens on the final project?
-	- A: No, unfortunately the final project deadline is the same for everyone for both fairness, as well as the more pragmatic grading deadline that looms at the end of the semester.
-- Q: Can I have an extension?
-	- A: No (see above). The project is released well ahead of time for you to plan. Do not procrastinate and try to finish the project the weekend before the deadline. 	
+This project is licensed under the MIT License.
