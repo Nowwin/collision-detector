@@ -1,4 +1,4 @@
-# Circle Simulation with SDL2
+# Collision Detection using Grid Partioning
 
 ## Description
 
